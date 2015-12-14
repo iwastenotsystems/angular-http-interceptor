@@ -1,19 +1,19 @@
 /*global angular:true, browser:true */
 
 /**
- * @license HTTP Auth Interceptor Module for AngularJS
- * (c) 2012 Witold Szczerba
+ * @license HTTP Interceptor Module for AngularJS
+ * (c) 2015 iWasteNot Systems Inc.
  * License: MIT
  */
 (function () {
   'use strict';
 
-  angular.module('http-auth-interceptor', ['http-auth-interceptor-buffer'])
+  angular.module('httpInterceptor', ['httpInterceptorBuffer'])
 
-  .factory('authService', ['$rootScope','httpBuffer', function($rootScope, httpBuffer) {
+  .factory('httpInteceptorService', ['$rootScope','httpBuffer', function($rootScope, httpBuffer) {
     return {
       /**
-       * Call this function to indicate that authentication was successfull and trigger a
+       * Call this function to indicate that authentication was successful and trigger a
        * retry of all deferred requests.
        * @param data an optional argument to pass on to $broadcast which may be useful for
        * example if you need to pass through details of the user that was logged in
@@ -74,7 +74,7 @@
   /**
    * Private module, a utility, required internally by 'http-auth-interceptor'.
    */
-  angular.module('http-auth-interceptor-buffer', [])
+  angular.module('httpInterceptorBuffer', [])
 
   .factory('httpBuffer', ['$injector', function($injector) {
     /** Holds all the requests, so they can be re-requested in future. */

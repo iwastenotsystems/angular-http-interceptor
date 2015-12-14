@@ -1,40 +1,38 @@
-HTTP Auth Interceptor Module
-============================
-for AngularJS
--------------
+# HTTP Interceptor Module
+
+## for AngularJS
+
+This is a divering fork of [angular-http-auth](https://github.com/witoldsz/angular-http-auth).
 
 This is the implementation of the concept described in
 [Authentication in AngularJS (or similar) based application](http://www.espeo.pl/1-authentication-in-angularjs-application/).
 
-There are releases for both AngularJS **1.0.x** and **1.2.x**,
-see [releases](https://github.com/witoldsz/angular-http-auth/releases).
-
-Launch demo [here](http://witoldsz.github.com/angular-http-auth/)
-or switch to [gh-pages](https://github.com/witoldsz/angular-http-auth/tree/gh-pages)
+Launch demo [here](http://witoldsz.github.com/angular-http-interceptor/)
+or switch to [gh-pages](https://github.com/witoldsz/angular-http-interceptor/tree/gh-pages)
 branch for source code of the demo.
 
 Usage
 ------
 
-- Install via bower: `bower install --save angular-http-auth`
-- ...or via npm: `npm install --save angular-http-auth`
+- Install via bower: `bower install --save angular-http-interceptor`
+- ...or via npm: `npm install --save angular-http-interceptor`
 - Include as a dependency in your app: `angular.module('myApp', ['http-auth-interceptor'])`
 
 Manual
 ------
 
-This module installs $http interceptor and provides the `authService`.
+This module installs $http interceptor and provides the `httpInteceptorService`.
 
 The $http interceptor does the following:
 the configuration object (this is the requested URL, payload and parameters)
 of every HTTP 401 response is buffered and everytime it happens, the
 `event:auth-loginRequired` message is broadcasted from $rootScope.
 
-The `authService` has only one method: `loginConfirmed()`.
+The `httpInteceptorService` has only one method: `loginConfirmed()`.
 You are responsible to invoke this method after user logged in. You may optionally pass in
 a data argument to the loginConfirmed method which will be passed on to the loginConfirmed
 $broadcast. This may be useful, for example if you need to pass through details of the user
-that was logged in. The `authService` will then retry all the requests previously failed due
+that was logged in. The `httpInteceptorService` will then retry all the requests previously failed due
 to HTTP 401 response.
 
 In the event that a requested resource returns an HTTP 403 response (i.e. the user is
@@ -52,7 +50,7 @@ Sometimes you might not want the interceptor to intercept a request even if one 
 * `http-auth-interceptor` captures the initial request and broadcasts `event:auth-loginRequired`,
 * your application intercepts this to e.g. show a login dialog:
  * DO NOT REDIRECT anywhere (you can hide your forms), just show login dialog
-* once your application figures out the authentication is OK, call: `authService.loginConfirmed()`,
+* once your application figures out the authentication is OK, call: `httpInteceptorService.loginConfirmed()`,
 * your initial failed request will now be retried and when proper response is finally received,
 the `function(response) {do-something-with-response}` will fire,
 * your application will continue as nothing had happened.
@@ -67,19 +65,19 @@ You can supply additional data to observers across your application who are list
       	$log.log(data)
       });
 
-Use the `authService.loginConfirmed([data])` method to emit data with your login event.
+Use the `httpInteceptorService.loginConfirmed([data])` method to emit data with your login event.
 
 ####Updating [$http(config)](https://docs.angularjs.org/api/ng/service/$http):
 Successful login means that the previous request are ready to be fired again, however now that login has occurred certain aspects of the previous requests might need to be modified on the fly. This is particularly important in a token based authentication scheme where an authorization token should be added to the header.
 
 The `loginConfirmed` method supports the injection of an Updater function that will apply changes to the http config object.
 
-    authService.loginConfirmed([data], [Updater-Function])
+    httpInteceptorService.loginConfirmed([data], [Updater-Function])
 
     //application of tokens to previously fired requests:
     var token = reponse.token;
 
-    authService.loginConfirmed('success', function(config){
+    httpInteceptorService.loginConfirmed('success', function(config){
       config.headers["Authorization"] = token;
       return config;
     })

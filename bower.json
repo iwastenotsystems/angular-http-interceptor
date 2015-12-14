@@ -1,12 +1,12 @@
 {
-  "author": "Witold Szczerba",
-  "name": "angular-http-auth",
-  "homepage": "https://github.com/witoldsz/angular-http-auth",
+  "author": "iWasteNot Systems Inc.",
+  "name": "angular-http-interceptor",
+  "homepage": "https://github.com/iwastenotsystems/angular-http-interceptor",
   "repository": {
     "type": "git",
-    "url": "git://github.com/witoldsz/angular-http-auth.git"
+    "url": "git://github.com/iwastenotsystems/angular-http-interceptor.git"
   },
-  "main": "./src/http-auth-interceptor.js",
+  "main": "./src/http-interceptor.js",
   "dependencies": {
     "angular": "^1.2"
   },

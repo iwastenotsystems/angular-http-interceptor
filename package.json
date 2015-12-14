@@ -1,20 +1,21 @@
 {
-  "name": "angular-http-auth",
-  "version": "1.2.3",
-  "description": "HTTP Auth Interceptor Module for AngularJS.",
-  "main": "src/http-auth-interceptor.js",
+  "name": "angular-http-interceptor",
+  "version": "2.0.0",
+  "description": "HTTP Interceptor Module for AngularJS.",
+  "main": "src/http-interceptor.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/witoldsz/angular-http-auth.git"
+    "url": "https://github.com/iwastenotsystems/angular-http-interceptor.git"
   },
-  "author": "Witold Szczerba",
+  "author": "iWasteNot Systems Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/witoldsz/angular-http-auth/issues"
+    "url": "https://github.com/iwastenotsystems/angular-http-interceptor/issues"
   },
   "keywords": [
     "angular",
+    "http",
     "auth"
   ],
-  "homepage": "https://github.com/witoldsz/angular-http-auth"
+  "homepage": "https://iwastenotsystems/angular-http-interceptor"
 }
